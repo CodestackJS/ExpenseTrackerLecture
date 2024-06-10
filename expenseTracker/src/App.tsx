@@ -33,7 +33,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
       <h1 className="text center">Expense Tracker </h1>
 
       <div className="m-5">
-        <ExpenseForm/>
+        <ExpenseForm onHelpSubmit={expense => setDummyExpensesArray([...dummyExpensesArray, {...expense, id:dummyExpensesArray.length + 1}])}/>
       </div>
 
       <div className="m-5">
