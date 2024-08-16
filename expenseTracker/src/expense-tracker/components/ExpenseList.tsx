@@ -1,21 +1,21 @@
+import { Expense } from "../../App";
 
 
-interface Expense{
-    id: number;
-    description: string;
-    amount: number;
-    category: string;
-}
+
 interface ExpenseProps{
     expenses: Expense [];
     onDelete: (id:number) => void
 }
-
+// onclick input field pops out
+// enter changes to input field to make updates
+// need the category dropdown
+// save updates
+// cancel edits button
 
 
 const ExpenseList = ({expenses, onDelete}:ExpenseProps) => {
 
-    if(expenses.length ===0)
+    if(expenses.length === 0)
         return null;
 
 
@@ -37,8 +37,11 @@ const ExpenseList = ({expenses, onDelete}:ExpenseProps) => {
         <td>{expense.amount}</td>
         <td>{expense.category}</td>
         <td>
-            <button className="btn btn-outline-danger" onClick={()=> onDelete(expense.id)}>Delete</button>
+            <button className="btn btn-outline-danger m-2" onClick={()=> onDelete(expense.id)}>Delete</button>
+            <button className="btn btn-outline-warning" onClick={()=> onDelete(expense.id)}>Update</button>
         </td>
+
+        
 
     </tr>)}
   </tbody>
