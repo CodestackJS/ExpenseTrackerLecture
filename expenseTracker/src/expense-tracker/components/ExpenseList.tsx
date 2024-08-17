@@ -2,12 +2,15 @@ import { number } from "zod";
 import { Expense } from "../../App";
 import { useState } from "react";
 import categories from "../categories";
+import axios from "axios";
+import { BASE_URL } from "../../constant";
 
 
 
 interface ExpenseProps{
     expenses: Expense [];
     onDelete: (id:number) => void
+    fetchData: () => void;
 }
 // onclick of the edit button input field pops out
 // enter changes to input field to make updates
@@ -16,7 +19,7 @@ interface ExpenseProps{
 // cancel edits button
 
 
-const ExpenseList = ({expenses, onDelete}:ExpenseProps) => {
+const ExpenseList = ({expenses, onDelete, fetchData}:ExpenseProps) => {
 
     const [editId, setEditId] = useState<number | null>(null);
     const [editInput, setEditInput] = useState<Expense>({
@@ -31,7 +34,26 @@ const ExpenseList = ({expenses, onDelete}:ExpenseProps) => {
       setEditId(id);
     };
 
-
+    const handleSave = () => {
+      axios
+      .put(BASE_URL + "Expense/" + editId, editInput)
+      .then(fetchData)
+      .catch((error) => 
+        {
+          console.log(error);
+        })
+      .finally(() => 
+        {
+          setEditInput({
+            ...editInput,
+            id: 0,
+            description: "",
+            amount: 0,
+            category: "",
+          });
+          setEditId(null);
+        });
+    }
 
 
     if(expenses.length === 0)
@@ -96,7 +118,7 @@ const ExpenseList = ({expenses, onDelete}:ExpenseProps) => {
           
           {editId == expense.id ?  ( <>
           
-          <button className="btn btn-outline-success m-2" onClick={()=> startEdit(expense.id)}>Save</button>
+          <button className="btn btn-outline-success m-2" onClick={handleSave}>Save</button>
 
            <button className="btn btn-outline-primary m-2" onClick={()=> setEditId(null)}>Cancel</button>
            </>

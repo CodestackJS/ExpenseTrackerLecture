@@ -89,7 +89,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
       </div>
 
       {/* <ExpenseList expenses={dummyExpensesArray} onDelete={handleDelete} /> */}
-      <ExpenseList expenses={visibleExpense} onDelete={handleDelete} />
+      <ExpenseList expenses={visibleExpense} onDelete={handleDelete} fetchData={fetchData}/>
     </>
   );
 };
