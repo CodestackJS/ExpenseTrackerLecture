@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ExpenseList from "./expense-tracker/components/ExpenseList";
 import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
-//import ExpenseForm from "./expense-tracker/components/ExpenseForm";
+import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 import axios from "axios";
 import { BASE_URL } from "./constant";
 // import { categories } from "../../App";
@@ -73,7 +73,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
       <h1 className="text center">Expense Tracker </h1>
 
       <div className="m-5">
-        {/* <ExpenseForm onHelpSubmit={expense => setData([...data, {...expense, id:dummyExpensesArray.length + 1}])}/> */}
+        <ExpenseForm fetchData = {fetchData}/>
       </div>
 
       <div className="m-5">

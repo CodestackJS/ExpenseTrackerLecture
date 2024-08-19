@@ -56,8 +56,8 @@ const ExpenseList = ({expenses, onDelete, fetchData}:ExpenseProps) => {
     }
 
 
-    if(expenses.length === 0)
-        return null;
+    // if(expenses.length === 0)
+    //     return null;
 
 
   return (
