@@ -1,0 +1,1 @@
+//create all functions for all components in this file
