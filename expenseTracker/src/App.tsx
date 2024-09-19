@@ -4,6 +4,7 @@ import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 import axios from "axios";
 import { BASE_URL } from "./constant";
+
 // import { categories } from "../../App";
  export interface Expense{
   id: number;
