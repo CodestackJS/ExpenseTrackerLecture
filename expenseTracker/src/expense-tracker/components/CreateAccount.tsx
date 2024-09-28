@@ -25,7 +25,11 @@ const CreateAccount = () => {
                         <p className='text-center'>Create Account</p>
                         <Form.Group className='mb-3' controlId='Username'>
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type='text' placeholder='Enter Username' onChange={(e) => handleUser(e.target.value)}/>
+                            <Form.Control type='username' placeholder='Enter Username' onChange={(e) => handleUser(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className='mb-3' controlId='Username'>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type='password' placeholder='Enter Password' onChange={(e) => handleUser(e.target.value)}/>
                         </Form.Group>
                         <Button variant="outline-primary">
                                 Submit

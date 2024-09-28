@@ -5,8 +5,6 @@ import categories from "../categories";
 import axios from "axios";
 import { BASE_URL } from "../../constant";
 
-
-
 interface ExpenseProps{
     expenses: Expense [];
     onDelete: (id:number) => void

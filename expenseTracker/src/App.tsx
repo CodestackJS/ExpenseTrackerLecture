@@ -71,7 +71,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <>
-      <h1 className="text center">Expense Tracker </h1>
+      <h1 className="text center"> Expense Tracker </h1>
 
       <div className="m-5">
         <ExpenseForm fetchData = {fetchData}/>
