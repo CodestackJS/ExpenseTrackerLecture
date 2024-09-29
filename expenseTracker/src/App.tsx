@@ -13,6 +13,7 @@ import { BASE_URL } from "./constant";
   category: string;
 }
 
+interface
 
 
 //comments

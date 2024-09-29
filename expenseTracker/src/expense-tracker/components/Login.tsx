@@ -1,10 +1,13 @@
 import { useState } from "react"
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const Login = () => {
+
+  let navigate = useNavigate();
 
   const [Username, setUsername] = useState('');
   const [Password, setPassword] = useState('');
@@ -23,7 +26,16 @@ const Login = () => {
       Password: Password
     }
 
-    
+    let token = await login(userData)
+    console.log(token.token, "This should log the token");
+    if(token.token != null)
+    {
+      localStorage.setItem("Token", token.token);
+      await GetLoggedInUser(Username);
+      navigate('/ExpenseList')
+    }
+
+
 
 
 
