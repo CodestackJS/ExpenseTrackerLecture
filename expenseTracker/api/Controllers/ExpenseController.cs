@@ -77,7 +77,11 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
             return Ok(expense);
         }
-
+        [HttpGet("GetItemsByUserId/{UserId}")]
+        public IEnumerable<Expense> GetItemsByUserId (int UserId)
+        {
+        return _context.Expenses.Where(item => item.UserId == UserId);        
+        }
 
 
     }

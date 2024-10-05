@@ -1,14 +1,17 @@
 import { number } from "zod";
 import { Expense } from "../../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import categories from "../categories";
 import axios from "axios";
 import { BASE_URL } from "../../constant";
+import { checkToken } from "../../Services/DataService";
+import { useNavigate } from "react-router-dom";
 
 interface ExpenseProps{
     expenses: Expense [];
     onDelete: (id:number) => void
-    fetchData: () => void;
+    fetchData: (id:number) => void;
+    onLogin: (userInfo:any) => void
 }
 // onclick of the edit button input field pops out
 // enter changes to input field to make updates
@@ -17,15 +20,32 @@ interface ExpenseProps{
 // cancel edits button
 
 
-const ExpenseList = ({expenses, onDelete, fetchData}:ExpenseProps) => {
+const ExpenseList = ({expenses, onDelete, fetchData, onLogin}:ExpenseProps) => {
+  let navigate = useNavigate();
 
     const [editId, setEditId] = useState<number | null>(null);
+    const [userData, setUserData] = useState(() => {
+      return localStorage.getItem("UserData") ? JSON.parse(localStorage.getItem("UserData")!) : {userId: 0} })
     const [editInput, setEditInput] = useState<Expense>({
       id: 0,
+      userId: userData.userId,
       description: "",
       amount: 0,
       category: "",
     })  
+    useEffect(() => {
+      if (!checkToken()) {
+        navigate('/')
+    }else{
+      setUserData(() => {
+        return localStorage.getItem("UserData") ? JSON.parse(localStorage.getItem("UserData")!) : {userId: 0} })
+        onLogin(userData);
+        fetchData(userData.userId);
+    }
+    }, [])
+
+    
+    
 
 
     const startEdit = (id: number) => {
@@ -35,7 +55,7 @@ const ExpenseList = ({expenses, onDelete, fetchData}:ExpenseProps) => {
     const handleSave = () => {
       axios
       .put(BASE_URL + "Expense/" + editId, editInput)
-      .then(fetchData)
+      .then(() => fetchData(userData.userId))
       .catch((error) => 
         {
           console.log(error);
@@ -45,6 +65,7 @@ const ExpenseList = ({expenses, onDelete, fetchData}:ExpenseProps) => {
           setEditInput({
             ...editInput,
             id: 0,
+            userId: userData.userId,
             description: "",
             amount: 0,
             category: "",

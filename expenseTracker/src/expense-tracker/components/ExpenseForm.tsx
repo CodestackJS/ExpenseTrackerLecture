@@ -24,8 +24,11 @@ const ExpenseForm = ({fetchData}:expenseProp) => {
     
   const {register,handleSubmit, formState: { errors }} = useForm<FormData>({ resolver: zodResolver(schema) });
 
+  const userData = JSON.parse(localStorage.getItem("UserData")!)
+
   const [expense, setExpense] = useState({
     id: 0,
+    userId: userData ? Number(userData.userId) : 0,
     description: "",
     amount: 0,
     category: "",
@@ -36,6 +39,7 @@ const ExpenseForm = ({fetchData}:expenseProp) => {
       axios
       .post(BASE_URL + "Expense/", expense)
       .then((response) => {
+        console.log(expense)
         fetchData();
         console.log(response)
       }) 

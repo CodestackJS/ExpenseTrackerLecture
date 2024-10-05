@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
+import { GetLoggedInUser, login } from "../../Services/DataService";
+import NavBar from "./Navbar";
 
 
 
@@ -22,29 +24,34 @@ const Login = () => {
 
   const handleSubmit = async () => {
     let userData = {
-      Username: Username,
-      Password: Password
+      id: 0,
+      username: Username,
+      password: Password
     }
 
     let token = await login(userData)
-    console.log(token.token, "This should log the token");
-    if(token.token != null)
+    console.log(token, "This should log the token");
+    if(token != null)
     {
-      localStorage.setItem("Token", token.token);
+      localStorage.setItem("Token", token);
       await GetLoggedInUser(Username);
       navigate('/ExpenseList')
     }
-
-
-
-
-
+    return userData;
   }
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleLogout = () => {
+        localStorage.clear();
+      
+      }
 
 
   return (
     <>
-      
+                <NavBar handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
+
       <Container>
         <Row>
           <Col className="form-container d-flex justify-content-center">
@@ -60,11 +67,11 @@ const Login = () => {
                   <Form.Control type="text" placeholder="Enter Password" onChange={(e) => handlePassword(e.target.value)}/>
                 </Form.Group>
 
-                <Button variant="outline-primary">
+                <Button variant="outline-primary" onClick={handleSubmit}>
                   Login
                 </Button>
                 <p className="mt-3">Don't have an account?</p>
-                <Button variant="outline-primary">
+                <Button variant="outline-primary" onClick={() => navigate('/CreateAccount')}>
                   Create Account
                 </Button>
 

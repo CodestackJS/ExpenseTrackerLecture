@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gmkKGHijHeEuFUq51Mc7h0ta6rTzeDMB/s/GFQkkjcXmC7gyVdljOng/Gq+T8griH/IH0Rnvyl6p1mAz34G6gQ==",
+  "dgSpecHash": "rmr3FO74DlLS6kGosRAA9vy67CGtuaBM73YjdPjRRrRJFu0DGc491U4Ky5FKVEAnWnV6Q179tOi0ixBUY54/9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jlsee\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\jlsee\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

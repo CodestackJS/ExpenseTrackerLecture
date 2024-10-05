@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\api.csproj": {}
+    "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\api.csproj": {
+    "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\api.csproj",
+        "projectPath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\api.csproj",
         "packagesPath": "C:\\Users\\jlsee\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expenseTracker\\api\\obj\\",
+        "outputPath": "C:\\Users\\jlsee\\OneDrive\\Documents\\Level3\\LectureFolder\\ExpenseTracker\\expensetracker\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jlsee\\AppData\\Roaming\\NuGet\\NuGet.Config"

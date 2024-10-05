@@ -4,16 +4,25 @@ import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 import axios from "axios";
 import { BASE_URL } from "./constant";
+import Navbar from "./expense-tracker/components/Navbar";
+import NavBar from "./expense-tracker/components/Navbar";
 
 // import { categories } from "../../App";
  export interface Expense{
   id: number;
+  userId: number;
   description: string;
   amount: number;
   category: string;
 }
 
-interface
+export interface User {
+  id: number;
+  username : string;
+  password : string;
+}
+
+
 
 
 //comments
@@ -34,10 +43,14 @@ const [selectedCategory, setSelectedCategory] = useState('');
     
 
     const [data, setData] = useState<Expense[]>([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [tempId, setTempId] = useState(0);
 
-    const fetchData = () => 
+
+    const fetchData = (userId: number) => 
     {
-      axios.get(BASE_URL + "Expense/")
+      setTempId(userId);
+      axios.get(BASE_URL + "Expense/GetItemsByUserId/" + userId)
       .then((res) => 
     {
       setData(res.data);
@@ -48,22 +61,30 @@ const [selectedCategory, setSelectedCategory] = useState('');
       });
     };
 
-    useEffect(() => {
-      fetchData();
-    }, []);
+    // useEffect(() => {
+    //   fetchData();
+    // }, []);
 
 
 
   const handleDelete = (id: number) => {
     // setDummyExpensesArray(dummyExpensesArray.filter((expense) => expense.id !== id));
       axios.delete(BASE_URL + 'Expense/' + id)
-      .then(() => fetchData())
+      .then(() => fetchData(tempId))
       .catch(error => {
         console.log(error);
       })
   }
 
+  const handleLogout = () => {
+    localStorage.clear();
   
+  }
+  const handleLogin = (userData:{publisherName: string}) => {
+    
+    setIsLoggedIn(true);
+    console.log(userData);
+  }
 
 
 
@@ -72,10 +93,12 @@ const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <>
+          <NavBar handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
+
       <h1 className="text center"> Expense Tracker </h1>
 
       <div className="m-5">
-        <ExpenseForm fetchData = {fetchData}/>
+        <ExpenseForm fetchData = {() => fetchData}/>
       </div>
 
       <div className="m-5">
@@ -91,7 +114,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
       </div>
 
       {/* <ExpenseList expenses={dummyExpensesArray} onDelete={handleDelete} /> */}
-      <ExpenseList expenses={visibleExpense} onDelete={handleDelete} fetchData={fetchData}/>
+      <ExpenseList expenses={visibleExpense} onDelete={handleDelete} fetchData={fetchData} onLogin={handleLogin}/>
     </>
   );
 };
